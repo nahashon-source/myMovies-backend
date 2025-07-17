@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 from datetime import timedelta
+from decouple import config
+
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -111,3 +113,8 @@ CORS_ALLOW_ALL_ORIGINS = True  # 👈 TEMPORARY for development only
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+DEBUG = config('DEBUG', default=True, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost', cast=lambda v: v.split(','))
